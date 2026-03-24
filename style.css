@@ -313,7 +313,7 @@ h1 {
 }
 
 .contact-card p {
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 5vw, 2rem);
     margin-bottom: 3rem;
     font-weight: 700;
 }
