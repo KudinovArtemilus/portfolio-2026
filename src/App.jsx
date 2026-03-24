@@ -5,6 +5,7 @@ function App() {
     const appRef = useRef(null);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [cursorHover, setCursorHover] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         // Set static dark theme
@@ -125,10 +126,13 @@ function App() {
 
             <nav className="navbar">
                 <div className="logo" style={{ fontSize: '1.2rem', letterSpacing: '1px' }}>Кудинов Артем Владимирович</div>
-                <ul className="nav-links">
-                    <li><a href="#about" className="nav-link">Обо мне</a></li>
-                    <li><a href="#projects" className="nav-link">Проекты</a></li>
-                    <li><a href="#contact" className="nav-link">Контакты</a></li>
+                <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                    {isMobileMenuOpen ? '✕' : '☰'}
+                </button>
+                <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
+                    <li><a href="#about" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Обо мне</a></li>
+                    <li><a href="#projects" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Проекты</a></li>
+                    <li><a href="#contact" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Контакты</a></li>
                     <li><a href="/images/resume.pdf" className="nav-link btn-download" download="Kudinov_CV.pdf">Резюме</a></li>
                 </ul>
             </nav>

@@ -63,6 +63,17 @@ body {
     display: flex;
     list-style: none;
     gap: 3rem;
+    align-items: center;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1001;
 }
 
 .nav-link {
@@ -554,14 +565,8 @@ h1 {
         padding: 1rem 2rem;
     }
 
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
+    .about-grid,
+    .projects-grid,
     .education-grid {
         grid-template-columns: 1fr;
     }
@@ -572,5 +577,74 @@ h1 {
 
     .contact-card {
         padding: 4rem 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        background: rgba(40, 42, 54, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        transition: right 0.4s ease;
+        border-left: 1px solid var(--glass-border);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .reveal-text-sub {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .cta-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .cta-container a {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline {
+        margin-left: -20px;
+    }
+
+    .timeline-item {
+        padding-left: 40px;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.4rem;
+    }
+
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .custom-cursor,
+    .custom-cursor-dot {
+        display: none;
+        /* Hide custom cursor on touch devices */
     }
 }
