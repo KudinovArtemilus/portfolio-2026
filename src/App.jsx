@@ -105,8 +105,57 @@ function App() {
         };
     }, []);
 
+    const [selectedProject, setSelectedProject] = useState(null);
+
+    const recorderDescription = `
+# Java Screen Recorder Development
+
+Высокопроизводительная и незаметная программа для записи экрана, написанная на Java. Создана для фонового мониторинга и удобного создания скринкастов. Программа автоматически прячется в системный трей при запуске и моментально начинает запись.
+
+## 🚀 Основные возможности
+
+- **Автоматический скрытый запуск:** При открытии программы главное окно не появляется — она сразу сворачивается в системный трей и автоматически начинает запись экрана.
+- **Умное отображение нажатий клавиш:** Все нажимаемые пользователем клавиши (включая комбинации вроде Ctrl + Shift + R) крупно отображаются поверх записываемого видео для наглядности.
+- **Высокая производительность кодирования:** Использует нативный движок FFmpeg (через библиотеку JavaCV) с ультра-быстрым профилем кодирования H.264, что обеспечивает минимальную нагрузку на систему без потери качества.
+- **Глобальные горячие клавиши:** Управление записью доступно из любой точки операционной системы, даже во время работы в другом полноэкранном приложении.
+- **Защита доступа паролем:** Ключевые действия (остановка записи, выход, смена пароля) защищены паролем для предотвращения случайного или несанкционированного вмешательства.
+- **Изменяемый пароль:** Изначальный пароль 0646 можно легко изменить в настройках, при этом для смены потребуется подтверждение старого пароля.
+- **Гибкие настройки хранилища:** Выбор папки для сохранения видеофайлов через графический интерфейс (поддерживаются как локальные, так и подключенные сетевые диски).
+- **Надежность данных:** Запись автоматически разбивается на часовые отрезки, чтобы при сбое питания или системы видео не повредилось.
+
+## ⚙️ Управление и использование
+
+- **Начать / Остановить запись:** Глобальная комбинация клавиш Ctrl + Shift + R (срабатывает везде).
+- **Пароль по умолчанию:** 0646
+- **Доступ к настройкам:** В системном трее Windows кликните по иконке программы правой или левой кнопкой мыши и выберите "Развернуть окно". Здесь можно нажать "Настройки ⚙", чтобы изменить путь к сохранению или Сменить пароль.
+- **Выход из программы:** Нажмите правой кнопкой мыши по иконке программы в системном трее и выберите "Выйти из программы".
+
+## 🛠 Технологический стек
+
+- Java 21, JavaCV (FFmpeg), JNativeHook, FlatLaf (Darcula), Java Preferences API.
+`;
+
     return (
         <div id="app" ref={appRef}>
+            {/* Project Modal */}
+            {selectedProject && (
+                <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+                    <div className="modal-content" onClick={e => e.stopPropagation()}>
+                        <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
+                        <div className="modal-body">
+                            <pre className="md-content">{selectedProject.description}</pre>
+                            {selectedProject.downloadUrl && (
+                                <div className="modal-footer">
+                                    <a href={selectedProject.downloadUrl} className="btn btn-primary" download>
+                                        Скачать проект
+                                    </a>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Custom Cursor */}
             <div
                 className="custom-cursor"
@@ -315,17 +364,22 @@ function App() {
                     <div className="container">
                         <h2 className="section-title">КЛЮЧЕВЫЕ ПРОЕКТЫ</h2>
                         <div className="projects-grid">
-                            <div className="project-card reveal-item">
+                            <div className="project-card reveal-item featured">
                                 <div className="project-image">
                                     <img src="/images/project_recorder.png" alt="Java Screen Recorder" />
                                 </div>
                                 <div className="project-info">
+                                    <div className="project-tag">Новое</div>
                                     <h3>Java Screen Recorder</h3>
-                                    <p>Высокопроизводительное приложение для записи экрана на Java с использованием FFmpeg. Поддержка горячих клавиш и настройки области записи.</p>
+                                    <p>Высокопроизводительное приложение для фоновой записи экрана с отображением клавиатуры.</p>
                                     <div className="project-actions">
-                                        <a href="/downloads/setup.exe" className="btn btn-download" download="JavaScreenRecorder_Setup.exe">
-                                            Скачать установщик
-                                        </a>
+                                        <button 
+                                            className="btn btn-secondary" 
+                                            onClick={() => setSelectedProject({ title: 'Java Screen Recorder', description: recorderDescription, downloadUrl: '/downloads/setup.exe' })}
+                                        >
+                                            Подробнее
+                                        </button>
+                                        <a href="/downloads/setup.exe" className="btn btn-download" download>Скачать</a>
                                     </div>
                                 </div>
                             </div>
@@ -335,16 +389,10 @@ function App() {
                                 </div>
                                 <div className="project-info">
                                     <h3>Промышленный мониторинг</h3>
-                                    <p>Full-stack решение (Java Spring Boot / React) для сбора данных с контроллеров в реальном времени. Интеграция с ПЛК Siemens.</p>
-                                </div>
-                            </div>
-                            <div className="project-card reveal-item">
-                                <div className="project-image">
-                                    <img src="/images/project_2.png" alt="Инженерные утилиты" />
-                                </div>
-                                <div className="project-info">
-                                    <h3>Диагностические утилиты</h3>
-                                    <p>Набор инструментов на Java для анализа логов и автоматизированной диагностики оборудования.</p>
+                                    <p>Full-stack решение для сбора данных с ПЛК Siemens в реальном времени.</p>
+                                    <div className="project-actions">
+                                        <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Промышленный мониторинг', description: 'Подробное описание в разработке...' })}>Подробнее</button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="project-card reveal-item">
@@ -352,8 +400,29 @@ function App() {
                                     <img src="/images/project_3.png" alt="Визуализация процессов" />
                                 </div>
                                 <div className="project-info">
-                                    <h3>Цифровой отпечаток производства</h3>
-                                    <p>SCADA-системы и высокопроизводительные десктопные приложения (JavaFX/Swing) для визуализации техпроцессов.</p>
+                                    <h3>Цифровой отпечаток</h3>
+                                    <p>SCADA-системы и высокопроизводительные десктопные приложения для визуализации техпроцессов.</p>
+                                    <div className="project-actions">
+                                        <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Цифровой отпечаток', description: 'Подробное описание в разработке...' })}>Подробнее</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 className="section-title" style={{ marginTop: '6rem' }}>ДРУГИЕ ПРОЕКТЫ</h2>
+                        <div className="other-projects-list">
+                            <div className="other-project-item reveal-item">
+                                <div className="other-project-icon">☕</div>
+                                <div className="other-project-info">
+                                    <h3>Диагностические утилиты</h3>
+                                    <p>Набор инструментов на Java для анализа логов и диагностики оборудования.</p>
+                                </div>
+                            </div>
+                            <div className="other-project-item reveal-item">
+                                <div className="other-project-icon">🛠</div>
+                                <div className="other-project-info">
+                                    <h3>Логистические системы</h3>
+                                    <p>Участие в реализации enterprise-приложений для Оптика сервис.</p>
                                 </div>
                             </div>
                         </div>
