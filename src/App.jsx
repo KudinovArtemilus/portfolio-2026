@@ -224,54 +224,6 @@ function App() {
                 </section>
 
                 <section id="skills" className="skills section-padding">
-                    <div className="container">
-                        <h2 className="section-title">НАВЫКИ</h2>
-                        <div className="skills-container">
-                            <div className="skills-category reveal-item">
-                                <h3>Backend</h3>
-                                <div className="skills-grid">
-                                    <div className="skill-tag">Java Core</div>
-                                    <div className="skill-tag">Spring Boot</div>
-                                    <div className="skill-tag">Spring Data</div>
-                                    <div className="skill-tag">Spring Security</div>
-                                    <div className="skill-tag">JDBC / Hibernate</div>
-                                    <div className="skill-tag">SQL</div>
-                                    <div className="skill-tag">Maven</div>
-                                </div>
-                            </div>
-                            <div className="skills-category reveal-item">
-                                <h3>Frontend & Desktop</h3>
-                                <div className="skills-grid">
-                                    <div className="skill-tag">React</div>
-                                    <div className="skill-tag">React Native</div>
-                                    <div className="skill-tag">JavaFX</div>
-                                    <div className="skill-tag">Swing</div>
-                                </div>
-                            </div>
-                            <div className="skills-category reveal-item">
-                                <h3>Automation & DevOps</h3>
-                                <div className="skills-grid">
-                                    <div className="skill-tag">Siemens PLC</div>
-                                    <div className="skill-tag">TIA Portal</div>
-                                    <div className="skill-tag">Step 7</div>
-                                    <div className="skill-tag">Linux</div>
-                                    <div className="skill-tag">Git</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="experience" className="experience section-padding">
-                    <div className="container">
-                        <h2 className="section-title">ОПЫТ РАБОТЫ</h2>
-                            <div className="project-card reveal-item">
-                                <div className="project-image">
-                                    <img src="/images/project_3.png" alt="Визуализация процессов" />
-                                </div>
-                                <div className="project-info">
-                                    <h3>Цифровой отпечаток</h3>
-                                    <p>SCADA-системы и высокопроизводительные десктопные приложения для визуализации техпроцессов.</p>
                                     <div className="project-actions">
                                         <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Цифровой отпечаток', description: 'Подробное описание в разработке...' })}>Подробнее</button>
                                     </div>
