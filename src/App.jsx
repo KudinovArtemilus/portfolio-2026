@@ -224,6 +224,177 @@ function App() {
                 </section>
 
                 <section id="skills" className="skills section-padding">
+                    <div className="container">
+                        <h2 className="section-title">НАВЫКИ</h2>
+                        <div className="skills-container">
+                            <div className="skills-category reveal-item">
+                                <h3>Backend</h3>
+                                <div className="skills-grid">
+                                    <div className="skill-tag">Java Core</div>
+                                    <div className="skill-tag">Spring Boot</div>
+                                    <div className="skill-tag">Spring Data</div>
+                                    <div className="skill-tag">Spring Security</div>
+                                    <div className="skill-tag">JDBC / Hibernate</div>
+                                    <div className="skill-tag">SQL</div>
+                                    <div className="skill-tag">Maven</div>
+                                </div>
+                            </div>
+                            <div className="skills-category reveal-item">
+                                <h3>Frontend & Desktop</h3>
+                                <div className="skills-grid">
+                                    <div className="skill-tag">React</div>
+                                    <div className="skill-tag">React Native</div>
+                                    <div className="skill-tag">JavaFX</div>
+                                    <div className="skill-tag">Swing</div>
+                                </div>
+                            </div>
+                            <div className="skills-category reveal-item">
+                                <h3>Automation & DevOps</h3>
+                                <div className="skills-grid">
+                                    <div className="skill-tag">Siemens PLC</div>
+                                    <div className="skill-tag">TIA Portal</div>
+                                    <div className="skill-tag">Step 7</div>
+                                    <div className="skill-tag">Linux</div>
+                                    <div className="skill-tag">Git</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="experience" className="experience section-padding">
+                    <div className="container">
+                        <h2 className="section-title">ОПЫТ РАБОТЫ</h2>
+                        <div className="timeline">
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">2023 — Наст. время</div>
+                                <div className="timeline-content">
+                                    <h3>Промашкомплект</h3>
+                                    <h4>Инженер-электроник АСУП 1 категории (Java Developer)</h4>
+                                    <p>Разработка full-stack систем мониторинга, проектирование GUI на JavaFX и оптимизация производственной аналитики.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">2021 — 2023</div>
+                                <div className="timeline-content">
+                                    <h3>Оптика сервис</h3>
+                                    <h4>Java-разработчик</h4>
+                                    <p>Участие в реализации enterprise-приложений для логистики и поставок.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">2018 — 2021</div>
+                                <div className="timeline-content">
+                                    <h3>Промашкомплект</h3>
+                                    <h4>Java-разработчик / Пуско-наладка</h4>
+                                    <p>Настройка систем прослеживаемости готовой продукции и промышленного ПО.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">Июль 2017 — Август 2018</div>
+                                <div className="timeline-content">
+                                    <h3>ТОО "Майкубен-Вест"</h3>
+                                    <h4>Начальник GPS и мониторинга и Контрольно-пропускной системы</h4>
+                                    <p>Выполнение организационных мероприятий работы GPS отдела и КПП, мониторинг техники, анализ данных автодиспетчеров и интеграция GPS-оборудования. Администрирование систем APACS 3000, видеонаблюдения и интеграция с 1С.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">Апрель 2016 — Июль 2017</div>
+                                <div className="timeline-content">
+                                    <h3>ТОО "Майкубен-Вест"</h3>
+                                    <h4>Техник-программист</h4>
+                                    <p>Контрольно-пропускная система (APACS 3000), выдача пропусков, настройка турникетов, сверка с 1С, выяснение отклонений от графиков и просмотр видеонаблюдения.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">Июнь 2014 — Август 2014</div>
+                                <div className="timeline-content">
+                                    <h3>ТОО "Элтекс" г. Новосибирск</h3>
+                                    <h4>Техник-программист</h4>
+                                    <p>Ремонт сетевого оборудования, решение проблем клиентов с сетевым оборудованием.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">Февраль 2013 — Сентябрь 2013</div>
+                                <div className="timeline-content">
+                                    <h3>СибГУТИ г. Новосибирск</h3>
+                                    <h4>Техник (Кафедра МЭСиОС)</h4>
+                                    <p>Обслуживание оборудования, системное администрирование, работа с персоналом.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">Апрель 2012 — Февраль 2013</div>
+                                <div className="timeline-content">
+                                    <h3>СибГУТИ г. Новосибирск</h3>
+                                    <h4>Старший лаборант</h4>
+                                    <p>Обслуживание оборудования, поддержание пожарной безопасности.</p>
+                                </div>
+                            </div>
+                            <div className="timeline-item reveal-item">
+                                <div className="timeline-date">Январь 2008 — Январь 2010</div>
+                                <div className="timeline-content">
+                                    <h3>Уникод компьютерный центр</h3>
+                                    <h4>Техник</h4>
+                                    <p>Обслуживание клиентов, ремонт ПК и организационной техники.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="education" className="education section-padding">
+                    <div className="container">
+                        <h2 className="section-title">ОБРАЗОВАНИЕ</h2>
+                        <div className="education-grid">
+                            <div className="edu-card reveal-item">
+                                <h3>СибГУТИ, Новосибирск</h3>
+                                <p className="edu-degree">Бакалавр, Многоканальная связь</p>
+                                <p className="edu-year">Выпуск: 2018</p>
+                            </div>
+                            <div className="edu-card reveal-item">
+                                <h3>Экибастузкий гуманитарно-технический колледж</h3>
+                                <p className="edu-degree">Программное обеспечение</p>
+                                <p className="edu-year">Выпуск: 2010</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="projects" className="projects section-padding">
+                    <div className="container">
+                        <h2 className="section-title">КЛЮЧЕВЫЕ ПРОЕКТЫ</h2>
+                        <div className="projects-grid">
+                            <div className="project-card reveal-item">
+                                <div className="project-image">
+                                    <img src="/images/project_2.png" alt="Диагностические утилиты" />
+                                </div>
+                                <div className="project-info">
+                                    <h3>Диагностические утилиты</h3>
+                                    <p>Набор инструментов на Java для анализа логов и автоматизированной диагностики оборудования.</p>
+                                    <div className="project-actions">
+                                        <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Диагностические утилиты', description: 'Подробное описание в разработке...' })}>Подробнее</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="project-card reveal-item">
+                                <div className="project-image">
+                                    <img src="/images/project_1.png" alt="Промышленный мониторинг" />
+                                </div>
+                                <div className="project-info">
+                                    <h3>Промышленный мониторинг</h3>
+                                    <p>Full-stack решение для сбора данных с ПЛК Siemens в реальном времени.</p>
+                                    <div className="project-actions">
+                                        <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Промышленный мониторинг', description: 'Подробное описание в разработке...' })}>Подробнее</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="project-card reveal-item">
+                                <div className="project-image">
+                                    <img src="/images/project_3.png" alt="Визуализация процессов" />
+                                </div>
+                                <div className="project-info">
+                                    <h3>Цифровой отпечаток</h3>
+                                    <p>SCADA-системы и высокопроизводительные десктопные приложения для визуализации техпроцессов.</p>
                                     <div className="project-actions">
                                         <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Цифровой отпечаток', description: 'Подробное описание в разработке...' })}>Подробнее</button>
                                     </div>
@@ -234,10 +405,20 @@ function App() {
                         <h2 className="section-title" style={{ marginTop: '6rem' }}>ДРУГИЕ ПРОЕКТЫ</h2>
                         <div className="other-projects-list">
                             <div className="other-project-item reveal-item">
-                                <div className="other-project-icon">☕</div>
+                                <div className="other-project-icon">📹</div>
                                 <div className="other-project-info">
-                                    <h3>Диагностические утилиты</h3>
-                                    <p>Набор инструментов на Java для анализа логов и диагностики оборудования.</p>
+                                    <h3>Java Screen Recorder</h3>
+                                    <div className="project-tag" style={{ marginBottom: '5px' }}>Новое</div>
+                                    <p>Высокопроизводительное приложение для фоновой записи экрана с отображением клавиатуры.</p>
+                                    <div className="project-actions" style={{ marginTop: '10px' }}>
+                                        <button 
+                                            className="btn btn-secondary" 
+                                            onClick={() => setSelectedProject({ title: 'Java Screen Recorder', description: recorderDescription, downloadUrl: '/downloads/setup.exe' })}
+                                        >
+                                            Описание
+                                        </button>
+                                        <a href="/downloads/setup.exe" className="btn btn-download" download>Скачать</a>
+                                    </div>
                                 </div>
                             </div>
                             <div className="other-project-item reveal-item">
@@ -273,6 +454,9 @@ function App() {
                         </div>
                     </div>
                 </section>
+                <footer className="footer">
+                    <p>&copy; {new Date().getFullYear()} Kudinov Artem. Все права защищены.</p>
+                </footer>
             </main>
         </div>
     );
