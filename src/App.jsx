@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Lenis from 'lenis';
+import ReactMarkdown from 'react-markdown';
 
 function App() {
     const appRef = useRef(null);
@@ -143,7 +144,9 @@ function App() {
                     <div className="modal-content" onClick={e => e.stopPropagation()}>
                         <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
                         <div className="modal-body">
-                            <pre className="md-content">{selectedProject.description}</pre>
+                            <div className="md-content">
+                                <ReactMarkdown>{selectedProject.description}</ReactMarkdown>
+                            </div>
                             {selectedProject.downloadUrl && (
                                 <div className="modal-footer">
                                     <a href={selectedProject.downloadUrl} className="btn btn-primary" download>
