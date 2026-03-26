@@ -265,62 +265,6 @@ function App() {
                 <section id="experience" className="experience section-padding">
                     <div className="container">
                         <h2 className="section-title">ОПЫТ РАБОТЫ</h2>
-                        <div className="timeline">
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">2023 — Наст. время</div>
-                                <div className="timeline-content">
-                                    <h3>Промашкомплект</h3>
-                                    <h4>Инженер-электроник АСУП 1 категории (Java Developer)</h4>
-                                    <p>Разработка full-stack систем мониторинга, проектирование GUI на JavaFX и оптимизация производственной аналитики.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">2021 — 2023</div>
-                                <div className="timeline-content">
-                                    <h3>Оптика сервис</h3>
-                                    <h4>Java-разработчик</h4>
-                                    <p>Участие в реализации enterprise-приложений для логистики и поставок.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">2018 — 2021</div>
-                                <div className="timeline-content">
-                                    <h3>Промашкомплект</h3>
-                                    <h4>Java-разработчик / Пуско-наладка</h4>
-                                    <p>Настройка систем прослеживаемости готовой продукции и промышленного ПО.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">Июль 2017 — Август 2018</div>
-                                <div className="timeline-content">
-                                    <h3>ТОО "Майкубен-Вест"</h3>
-                                    <h4>Начальник GPS и мониторинга и Контрольно-пропускной системы</h4>
-                                    <p>Выполнение организационных мероприятий работы GPS отдела и КПП, мониторинг техники, анализ данных автодиспетчеров и интеграция GPS-оборудования. Администрирование систем APACS 3000, видеонаблюдения и интеграция с 1С.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">Апрель 2016 — Июль 2017</div>
-                                <div className="timeline-content">
-                                    <h3>ТОО "Майкубен-Вест"</h3>
-                                    <h4>Техник-программист</h4>
-                                    <p>Контрольно-пропускная система (APACS 3000), выдача пропусков, настройка турникетов, сверка с 1С, выяснение отклонений от графиков и просмотр видеонаблюдения.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">Июнь 2014 — Август 2014</div>
-                            </div>
-                            <div className="project-card reveal-item">
-                                <div className="project-image">
-                                    <img src="/images/project_1.png" alt="Промышленный мониторинг" />
-                                </div>
-                                <div className="project-info">
-                                    <h3>Промышленный мониторинг</h3>
-                                    <p>Full-stack решение для сбора данных с ПЛК Siemens в реальном времени.</p>
-                                    <div className="project-actions">
-                                        <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Промышленный мониторинг', description: 'Подробное описание в разработке...' })}>Подробнее</button>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="project-card reveal-item">
                                 <div className="project-image">
                                     <img src="/images/project_3.png" alt="Визуализация процессов" />
