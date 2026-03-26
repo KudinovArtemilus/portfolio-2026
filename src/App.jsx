@@ -317,6 +317,20 @@ function App() {
                         <div className="projects-grid">
                             <div className="project-card reveal-item">
                                 <div className="project-image">
+                                    <img src="/images/project_recorder.png" alt="Java Screen Recorder" />
+                                </div>
+                                <div className="project-info">
+                                    <h3>Java Screen Recorder</h3>
+                                    <p>Высокопроизводительное приложение для записи экрана на Java с использованием FFmpeg. Поддержка горячих клавиш и настройки области записи.</p>
+                                    <div className="project-actions">
+                                        <a href="/downloads/setup.exe" className="btn btn-download" download="JavaScreenRecorder_Setup.exe">
+                                            Скачать установщик
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="project-card reveal-item">
+                                <div className="project-image">
                                     <img src="/images/project_1.png" alt="Промышленный мониторинг" />
                                 </div>
                                 <div className="project-info">

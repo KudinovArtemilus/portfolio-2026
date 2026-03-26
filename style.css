@@ -298,6 +298,20 @@ h1 {
 .project-info p {
     color: var(--text-muted);
     font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.project-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.project-info .btn-download {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    text-align: center;
+    width: 100%;
 }
 
 /* Contact Section */
