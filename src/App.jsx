@@ -138,26 +138,28 @@ function App() {
 
     return (
         <div id="app" ref={appRef}>
-            {/* Project Modal */}
-            {selectedProject && (
-                <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
-                    <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <button className="modal-close" onClick={() => setSelectedProject(null)}>✕</button>
-                        <div className="modal-body">
-                            <div className="md-content">
-                                <ReactMarkdown>{selectedProject.description}</ReactMarkdown>
-                            </div>
-                            {selectedProject.downloadUrl && (
-                                <div className="modal-footer">
-                                    <a href={selectedProject.downloadUrl} className="btn btn-primary" download>
-                                        Скачать проект
-                                    </a>
+            {/* Project Drawer */}
+            <div className={`drawer-overlay ${selectedProject ? 'active' : ''}`} onClick={() => setSelectedProject(null)}>
+                <div className={`drawer-content ${selectedProject ? 'active' : ''}`} onClick={e => e.stopPropagation()}>
+                    <button className="drawer-close" onClick={() => setSelectedProject(null)}>✕</button>
+                    <div className="drawer-body">
+                        {selectedProject && (
+                            <>
+                                <div className="md-content">
+                                    <ReactMarkdown>{selectedProject.description}</ReactMarkdown>
                                 </div>
-                            )}
-                        </div>
+                                {selectedProject.downloadUrl && (
+                                    <div className="drawer-footer">
+                                        <a href={selectedProject.downloadUrl} className="btn btn-primary" download>
+                                            Скачать проект
+                                        </a>
+                                    </div>
+                                )}
+                            </>
+                        )}
                     </div>
                 </div>
-            )}
+            </div>
 
             {/* Custom Cursor */}
             <div
