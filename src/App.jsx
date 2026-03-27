@@ -1,88 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import ReactMarkdown from 'react-markdown';
 
-function App() {
-    const appRef = useRef(null);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+// Scroll to top on route change
+function ScrollToTop() {
+    const { pathname } = useLocation();
     useEffect(() => {
-        // Set static dark theme
-        document.body.className = 'dracula';
+        window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+}
 
-    }, []);
-
-    useEffect(() => {
-        // Initialize Lenis smooth scroll
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-            infinite: false,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // Register ScrollTrigger if window.gsap exists
-        if (window.gsap && window.ScrollTrigger) {
-            window.gsap.registerPlugin(window.ScrollTrigger);
-
-            const sectionTitles = document.querySelectorAll('.section-title');
-            sectionTitles.forEach(title => {
-                window.gsap.fromTo(title,
-                    { opacity: 0, x: -20 },
-                    {
-                        scrollTrigger: {
-                            trigger: title,
-                            start: "top 90%",
-                            toggleActions: "play none none none"
-                        },
-                        opacity: 1,
-                        x: 0,
-                        duration: 1,
-                        ease: "power2.out"
-                    }
-                );
-            });
-
-            const revealItems = document.querySelectorAll('.reveal-item, .timeline-item, .skill-tag, .edu-card');
-            revealItems.forEach((item, index) => {
-                window.gsap.fromTo(item,
-                    { opacity: 0, y: 40 },
-                    {
-                        scrollTrigger: {
-                            trigger: item,
-                            start: "top 85%",
-                            toggleActions: "play none none none"
-                        },
-                        y: 0,
-                        opacity: 1,
-                        duration: 1,
-                        ease: "power3.out",
-                        delay: item.classList.contains('skill-tag') ? (index % 5) * 0.1 : item.classList.contains('timeline-item') ? (index % 2) * 0.2 : 0
-                    }
-                );
-            });
-        }
-
-        return () => {
-            lenis.destroy();
-            if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
-        };
-    }, []);
-
-    const [selectedProject, setSelectedProject] = useState(null);
-
-    const recorderDescription = `
+const recorderDescription = `
 # Java Screen Recorder Development
 
 Высокопроизводительная и незаметная программа для записи экрана, написанная на Java. Создана для фонового мониторинга и удобного создания скринкастов. Программа автоматически прячется в системный трей при запуске и моментально начинает запись.
@@ -110,7 +40,7 @@ function App() {
 - Java 21, JavaCV (FFmpeg), JNativeHook, FlatLaf (Darcula), Java Preferences API.
 `;
 
-    const monitoringDescription = `
+const monitoringDescription = `
 # Платформа промышленного мониторинга: Полный обзор системы
 
 Этот документ предназначен для презентации функциональных возможностей системы, её архитектурных решений, областей применения и анализа текущих векторов развития.
@@ -176,32 +106,86 @@ function App() {
 - ![🇷🇺](https://fonts.gstatic.com/s/e/notoemoji/17.0/1f1f7_1f1fa/32.png) Локализация: Полная поддержка кириллицы и специфических кодировок (Windows-1251) для совместимости со старым оборудованием.
 `;
 
+const projectsData = {
+    'monitoring': {
+        id: 'monitoring',
+        title: 'Промышленный мониторинг',
+        description: monitoringDescription,
+        image: '/images/project_1.png'
+    },
+    'recorder': {
+        id: 'recorder',
+        title: 'Java Screen Recorder',
+        description: recorderDescription,
+        image: '/images/project_3.png',
+        downloadUrl: '/downloads/setup.exe'
+    },
+    'diagnostic': {
+        id: 'diagnostic',
+        title: 'Диагностические утилиты',
+        description: '# Диагностические утилиты\n\nПодробное описание в разработке...',
+        image: '/images/project_2.png'
+    },
+    'digital-twin': {
+        id: 'digital-twin',
+        title: 'Цифровой отпечаток',
+        description: '# Цифровой отпечаток\n\nПодробное описание в разработке...',
+        image: '/images/project_3.png'
+    }
+};
+
+function Home() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    useEffect(() => {
+        // Initialize ScrollTrigger animations
+        if (window.gsap && window.ScrollTrigger) {
+            window.gsap.registerPlugin(window.ScrollTrigger);
+            
+            // Clear existing triggers to avoid duplication
+            window.ScrollTrigger.getAll().forEach(t => t.kill());
+
+            const sectionTitles = document.querySelectorAll('.section-title');
+            sectionTitles.forEach(title => {
+                window.gsap.fromTo(title,
+                    { opacity: 0, x: -20 },
+                    {
+                        scrollTrigger: {
+                            trigger: title,
+                            start: "top 90%",
+                            toggleActions: "play none none none"
+                        },
+                        opacity: 1,
+                        x: 0,
+                        duration: 1,
+                        ease: "power2.out"
+                    }
+                );
+            });
+
+            const revealItems = document.querySelectorAll('.reveal-item, .timeline-item, .skill-tag, .edu-card');
+            revealItems.forEach((item, index) => {
+                window.gsap.fromTo(item,
+                    { opacity: 0, y: 40 },
+                    {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top 85%",
+                            toggleActions: "play none none none"
+                        },
+                        y: 0,
+                        opacity: 1,
+                        duration: 1,
+                        ease: "power3.out",
+                        delay: item.classList.contains('skill-tag') ? (index % 5) * 0.1 : item.classList.contains('timeline-item') ? (index % 2) * 0.2 : 0
+                    }
+                );
+            });
+        }
+    }, []);
+
     return (
-        <div id="app" ref={appRef}>
-            {/* Project Drawer */}
-            <div className={`drawer-overlay ${selectedProject ? 'active' : ''}`} onClick={() => setSelectedProject(null)}>
-                <div className={`drawer-content ${selectedProject ? 'active' : ''}`} onClick={e => e.stopPropagation()}>
-                    <button className="drawer-close" onClick={() => setSelectedProject(null)}>✕</button>
-                    <div className="drawer-body" data-lenis-prevent>
-                        {selectedProject && (
-                            <>
-                                <div className="md-content">
-                                    <ReactMarkdown>{selectedProject.description}</ReactMarkdown>
-                                </div>
-                                {selectedProject.downloadUrl && (
-                                    <div className="drawer-footer">
-                                        <a href={selectedProject.downloadUrl} className="btn btn-primary" download>
-                                            Скачать проект
-                                        </a>
-                                    </div>
-                                )}
-                            </>
-                        )}
-                    </div>
-                </div>
-            </div>
-
-
+        <>
             <nav className="navbar">
                 <div className="logo" style={{ fontSize: '1.2rem', letterSpacing: '1px' }}>Кудинов Артем Владимирович</div>
                 <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -327,64 +311,6 @@ function App() {
                                     <p>Выполнение организационных мероприятий работы GPS отдела и КПП, мониторинг техники, анализ данных автодиспетчеров и интеграция GPS-оборудования. Администрирование систем APACS 3000, видеонаблюдения и интеграция с 1С.</p>
                                 </div>
                             </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">Апрель 2016 — Июль 2017</div>
-                                <div className="timeline-content">
-                                    <h3>ТОО "Майкубен-Вест"</h3>
-                                    <h4>Техник-программист</h4>
-                                    <p>Контрольно-пропускная система (APACS 3000), выдача пропусков, настройка турникетов, сверка с 1С, выяснение отклонений от графиков и просмотр видеонаблюдения.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">Июнь 2014 — Август 2014</div>
-                                <div className="timeline-content">
-                                    <h3>ТОО "Элтекс" г. Новосибирск</h3>
-                                    <h4>Техник-программист</h4>
-                                    <p>Ремонт сетевого оборудования, решение проблем клиентов с сетевым оборудованием.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">Февраль 2013 — Сентябрь 2013</div>
-                                <div className="timeline-content">
-                                    <h3>СибГУТИ г. Новосибирск</h3>
-                                    <h4>Техник (Кафедра МЭСиОС)</h4>
-                                    <p>Обслуживание оборудования, системное администрирование, работа с персоналом.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">Апрель 2012 — Февраль 2013</div>
-                                <div className="timeline-content">
-                                    <h3>СибГУТИ г. Новосибирск</h3>
-                                    <h4>Старший лаборант</h4>
-                                    <p>Обслуживание оборудования, поддержание пожарной безопасности.</p>
-                                </div>
-                            </div>
-                            <div className="timeline-item reveal-item">
-                                <div className="timeline-date">Январь 2008 — Январь 2010</div>
-                                <div className="timeline-content">
-                                    <h3>Уникод компьютерный центр</h3>
-                                    <h4>Техник</h4>
-                                    <p>Обслуживание клиентов, ремонт ПК и организационной техники.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="education" className="education section-padding">
-                    <div className="container">
-                        <h2 className="section-title">ОБРАЗОВАНИЕ</h2>
-                        <div className="education-grid">
-                            <div className="edu-card reveal-item">
-                                <h3>СибГУТИ, Новосибирск</h3>
-                                <p className="edu-degree">Бакалавр, Многоканальная связь</p>
-                                <p className="edu-year">Выпуск: 2018</p>
-                            </div>
-                            <div className="edu-card reveal-item">
-                                <h3>Экибастузкий гуманитарно-технический колледж</h3>
-                                <p className="edu-degree">Программное обеспечение</p>
-                                <p className="edu-year">Выпуск: 2010</p>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -401,7 +327,7 @@ function App() {
                                     <h3>Диагностические утилиты</h3>
                                     <p>Набор инструментов на Java для анализа логов и автоматизированной диагностики оборудования.</p>
                                     <div className="project-actions">
-                                        <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Диагностические утилиты', description: 'Подробное описание в разработке...' })}>Подробнее</button>
+                                        <Link to="/project/diagnostic" className="btn btn-secondary">Подробнее</Link>
                                     </div>
                                 </div>
                             </div>
@@ -413,7 +339,7 @@ function App() {
                                     <h3>Промышленный мониторинг</h3>
                                     <p>Full-stack решение для сбора данных с ПЛК Siemens в реальном времени.</p>
                                     <div className="project-actions">
-                                        <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Промышленный мониторинг', description: monitoringDescription })}>Подробнее</button>
+                                        <Link to="/project/monitoring" className="btn btn-secondary">Подробнее</Link>
                                     </div>
                                 </div>
                             </div>
@@ -425,7 +351,7 @@ function App() {
                                     <h3>Цифровой отпечаток</h3>
                                     <p>SCADA-системы и высокопроизводительные десктопные приложения для визуализации техпроцессов.</p>
                                     <div className="project-actions">
-                                        <button className="btn btn-secondary" onClick={() => setSelectedProject({ title: 'Цифровой отпечаток', description: 'Подробное описание в разработке...' })}>Подробнее</button>
+                                        <Link to="/project/digital-twin" className="btn btn-secondary">Подробнее</Link>
                                     </div>
                                 </div>
                             </div>
@@ -440,21 +366,9 @@ function App() {
                                     <div className="project-tag" style={{ marginBottom: '5px' }}>Новое</div>
                                     <p>Высокопроизводительное приложение для фоновой записи экрана с отображением клавиатуры.</p>
                                     <div className="project-actions" style={{ marginTop: '10px' }}>
-                                        <button 
-                                            className="btn btn-secondary" 
-                                            onClick={() => setSelectedProject({ title: 'Java Screen Recorder', description: recorderDescription, downloadUrl: '/downloads/setup.exe' })}
-                                        >
-                                            Описание
-                                        </button>
+                                        <Link to="/project/recorder" className="btn btn-secondary">Описание</Link>
                                         <a href="/downloads/setup.exe" className="btn btn-download" download>Скачать</a>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="other-project-item reveal-item">
-                                <div className="other-project-icon">🛠</div>
-                                <div className="other-project-info">
-                                    <h3>Логистические системы</h3>
-                                    <p>Участие в реализации enterprise-приложений для Оптика сервис.</p>
                                 </div>
                             </div>
                         </div>
@@ -487,7 +401,100 @@ function App() {
                     <p>&copy; {new Date().getFullYear()} Kudinov Artem. Все права защищены.</p>
                 </footer>
             </main>
+        </>
+    );
+}
+
+function ProjectPage() {
+    const { id } = useParams();
+    const project = projectsData[id];
+
+    if (!project) return <div className="container" style={{ padding: '10rem 2rem' }}>Проект не найден</div>;
+
+    return (
+        <div className="project-detail-view">
+             <nav className="navbar project-navbar">
+                <div className="container">
+                    <Link to="/" className="back-link">
+                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Назад на главную
+                    </Link>
+                </div>
+            </nav>
+
+            <header className="project-header">
+                 <div className="hero-bg">
+                    <img src={project.image} alt={project.title} />
+                </div>
+                <div className="container">
+                    <h1 className="gradient-text">{project.title}</h1>
+                </div>
+            </header>
+
+            <section className="project-content section-padding">
+                <div className="container">
+                    <div className="md-content">
+                        <ReactMarkdown>{project.description}</ReactMarkdown>
+                    </div>
+                    {project.downloadUrl && (
+                        <div style={{ marginTop: '4rem', textAlign: 'center' }}>
+                            <a href={project.downloadUrl} className="btn btn-primary" download>
+                                Скачать проект
+                            </a>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            <footer className="footer">
+                <p>&copy; {new Date().getFullYear()} Kudinov Artem. Все права защищены.</p>
+            </footer>
         </div>
+    );
+}
+
+function App() {
+    useEffect(() => {
+        // Set static dark theme
+        document.body.className = 'dracula';
+
+        // Initialize Lenis smooth scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        return () => {
+            lenis.destroy();
+        };
+    }, []);
+
+    return (
+        <Router>
+            <ScrollToTop />
+            <div id="app">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/project/:id" element={<ProjectPage />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
