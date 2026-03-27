@@ -381,38 +381,8 @@ h1 {
 }
 
 /* Custom Cursor */
-@media (pointer: fine) {
+/* Custom cursor removed as per user request */
 
-    body,
-    a,
-    button {
-        cursor: none;
-    }
-}
-
-.custom-cursor {
-    width: 30px;
-    height: 30px;
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: width 0.2s, height 0.2s, background-color 0.2s;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 15px rgba(189, 147, 249, 0.5);
-}
-
-.custom-cursor-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--text-main);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
-}
 
 /* Shine Animation for Buttons */
 @keyframes shine {

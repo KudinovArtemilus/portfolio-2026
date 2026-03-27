@@ -4,38 +4,12 @@ import ReactMarkdown from 'react-markdown';
 
 function App() {
     const appRef = useRef(null);
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const [cursorHover, setCursorHover] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         // Set static dark theme
         document.body.className = 'dracula';
 
-        const handleMouseMove = (e) => {
-            setMousePos({ x: e.clientX, y: e.clientY });
-        };
-
-        const handleMouseOver = (e) => {
-            if (e.target.closest('a') || e.target.closest('button') || e.target.classList.contains('btn')) {
-                setCursorHover(true);
-            }
-        };
-        const handleMouseOut = (e) => {
-            if (e.target.closest('a') || e.target.closest('button') || e.target.classList.contains('btn')) {
-                setCursorHover(false);
-            }
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseover', handleMouseOver);
-        window.addEventListener('mouseout', handleMouseOut);
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseover', handleMouseOver);
-            window.removeEventListener('mouseout', handleMouseOut);
-        };
     }, []);
 
     useEffect(() => {
@@ -227,22 +201,6 @@ function App() {
                 </div>
             </div>
 
-            {/* Custom Cursor */}
-            <div
-                className="custom-cursor"
-                style={{
-                    left: `${mousePos.x}px`,
-                    top: `${mousePos.y}px`,
-                    width: cursorHover ? '50px' : '30px',
-                    height: cursorHover ? '50px' : '30px',
-                    backgroundColor: cursorHover ? 'rgba(189, 147, 249, 0.2)' : 'transparent',
-                    borderColor: cursorHover ? 'var(--accent)' : 'var(--accent)'
-                }}
-            />
-            <div
-                className="custom-cursor-dot"
-                style={{ left: `${mousePos.x}px`, top: `${mousePos.y}px` }}
-            />
 
             <nav className="navbar">
                 <div className="logo" style={{ fontSize: '1.2rem', letterSpacing: '1px' }}>Кудинов Артем Владимирович</div>
