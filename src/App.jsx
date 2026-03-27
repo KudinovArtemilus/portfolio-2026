@@ -117,7 +117,7 @@ const projectsData = {
         id: 'recorder',
         title: 'Java Screen Recorder',
         description: recorderDescription,
-        image: '/images/project_3.png',
+        image: '/images/project_recorder.png',
         downloadUrl: '/downloads/setup.exe'
     },
     'diagnostic': {
