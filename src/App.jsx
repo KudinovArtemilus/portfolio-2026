@@ -13,6 +13,8 @@ function ScrollToTop() {
 }
 
 const recorderDescription = `
+![Java Screen Recorder](/images/project_recorder.png)
+
 # Java Screen Recorder Development
 
 Высокопроизводительная и незаметная программа для записи экрана, написанная на Java. Создана для фонового мониторинга и удобного создания скринкастов. Программа автоматически прячется в системный трей при запуске и моментально начинает запись.
