@@ -182,7 +182,7 @@ function App() {
             <div className={`drawer-overlay ${selectedProject ? 'active' : ''}`} onClick={() => setSelectedProject(null)}>
                 <div className={`drawer-content ${selectedProject ? 'active' : ''}`} onClick={e => e.stopPropagation()}>
                     <button className="drawer-close" onClick={() => setSelectedProject(null)}>✕</button>
-                    <div className="drawer-body">
+                    <div className="drawer-body" data-lenis-prevent>
                         {selectedProject && (
                             <>
                                 <div className="md-content">
