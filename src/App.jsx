@@ -236,9 +236,9 @@ function Home() {
                     trigger: "body",
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 1
+                    scrub: true
                 },
-                y: 100,
+                y: 80,
                 ease: "none"
             });
 
@@ -247,22 +247,10 @@ function Home() {
                     trigger: "body",
                     start: "top top",
                     end: "bottom bottom",
-                    scrub: 2
+                    scrub: 0.5
                 },
-                rotate: 5,
-                scale: 1.1,
-                ease: "none"
-            });
-
-            window.gsap.to(".circuit-lines", {
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 2
-                },
-                rotate: 5,
-                scale: 1.1,
+                rotate: 3,
+                scale: 1.05,
                 ease: "none"
             });
         }
@@ -560,24 +548,26 @@ function App() {
 
         // Initialize Lenis smooth scroll
         const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
+            duration: 1,
+            lerp: 0.1,
+            smoothWheel: true,
+            wheelMultiplier: 1,
             touchMultiplier: 2,
+            normalizeWheel: true,
             infinite: false,
         });
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+        // Sync ScrollTrigger with Lenis
+        lenis.on('scroll', window.ScrollTrigger?.update);
+
+        window.gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+
+        window.gsap.ticker.lagSmoothing(0);
 
         return () => {
+            window.gsap.ticker.remove(lenis.raf);
             lenis.destroy();
         };
     }, []);
