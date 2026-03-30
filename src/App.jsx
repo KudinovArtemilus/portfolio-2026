@@ -288,7 +288,7 @@ function Home() {
                                     <p>Высокопроизводительное приложение для фоновой записи экрана с отображением клавиатуры.</p>
                                     <div className="project-actions" style={{ marginTop: '10px' }}>
                                         <Link to="/project/recorder" className="btn btn-secondary">Описание</Link>
-                                        <a href="/downloads/ScreenRecorder-1.0.0.msi" className="btn btn-download" download>Скачать</a>
+                                        <a href={projectsData['recorder'].downloadUrl} className="btn btn-download" download>Скачать</a>
                                     </div>
                                 </div>
                             </div>
