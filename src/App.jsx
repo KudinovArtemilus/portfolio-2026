@@ -290,6 +290,9 @@ function Home() {
                                         <Link to="/project/recorder" className="btn btn-secondary">Описание</Link>
                                         <a href={projectsData['recorder'].downloadUrl} className="btn btn-download" download>Скачать</a>
                                     </div>
+                                    <p style={{ fontSize: '0.7rem', opacity: 0.6, marginTop: '8px' }}>
+                                        * Google Диск выдает предупреждение из-за размера (750 МБ)
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -365,6 +368,9 @@ function ProjectPage() {
                             <a href={project.downloadUrl} className="btn btn-primary" download>
                                 Скачать проект
                             </a>
+                            <p style={{ marginTop: '15px', fontSize: '0.85rem', opacity: 0.7, maxWidth: '400px', margin: '15px auto 0' }}>
+                                * Примечание: Google Диск не может проверить файлы более 100 МБ на вирусы, поэтому выдает стандартное предупреждение. Это нормально для файла размером 750 МБ.
+                            </p>
                         </div>
                     )}
                 </div>
