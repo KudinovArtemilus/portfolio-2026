@@ -166,10 +166,11 @@ function Home() {
                                 <div className="skills-grid">
                                     <div className="skill-tag">Java Core</div>
                                     <div className="skill-tag">Spring Boot</div>
-                                    <div className="skill-tag">Spring Data</div>
-                                    <div className="skill-tag">Spring Security</div>
-                                    <div className="skill-tag">JDBC / Hibernate</div>
-                                    <div className="skill-tag">SQL</div>
+                                    <div className="skill-tag">Spring Data / Security</div>
+                                    <div className="skill-tag">Hibernate / JPA</div>
+                                    <div className="skill-tag">PostgreSQL / TimescaleDB</div>
+                                    <div className="skill-tag">RabbitMQ / STOMP</div>
+                                    <div className="skill-tag">FFmpeg / JavaCV</div>
                                     <div className="skill-tag">Maven</div>
                                 </div>
                             </div>
@@ -179,16 +180,20 @@ function Home() {
                                     <div className="skill-tag">React</div>
                                     <div className="skill-tag">React Native</div>
                                     <div className="skill-tag">JavaFX</div>
-                                    <div className="skill-tag">Swing</div>
+                                    <div className="skill-tag">Swing / FlatLaf</div>
+                                    <div className="skill-tag">JNativeHook</div>
                                 </div>
                             </div>
                             <div className="skills-category reveal-item">
                                 <h3>Automation & DevOps</h3>
                                 <div className="skills-grid">
                                     <div className="skill-tag">Siemens PLC</div>
+                                    <div className="skill-tag">PLC4X</div>
+                                    <div className="skill-tag">Modbus / OPC UA</div>
                                     <div className="skill-tag">TIA Portal</div>
                                     <div className="skill-tag">Step 7</div>
                                     <div className="skill-tag">Linux</div>
+                                    <div className="skill-tag">Docker</div>
                                     <div className="skill-tag">Git</div>
                                 </div>
                             </div>
