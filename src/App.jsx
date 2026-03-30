@@ -38,7 +38,7 @@ const projectsData = {
         title: 'Java Screen Recorder',
         description: recorderDescription,
         image: '/images/project_recorder.png',
-        downloadUrl: 'https://drive.google.com/uc?export=download&id=1wNTMgpYXYgl18m_NzboY3LzzlBWD7dhC'
+        downloadUrl: 'https://drive.google.com/uc?export=download&id=1wNTMgpYXYgl18m_NzbOY3LzzlBWD7dhC'
     },
     'diagnostic': {
         id: 'diagnostic',
