@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 
 export default function Navbar() {
@@ -19,6 +20,11 @@ export default function Navbar() {
                 <li>
                     <MagneticButton>
                         <a href="#projects" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Проекты</a>
+                    </MagneticButton>
+                </li>
+                <li>
+                    <MagneticButton>
+                        <Link to="/blog" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Блог</Link>
                     </MagneticButton>
                 </li>
                 <li>

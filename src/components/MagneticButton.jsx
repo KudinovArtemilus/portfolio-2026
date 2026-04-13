@@ -1,8 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
+import { useTechnoSounds } from '../hooks/useTechnoSounds';
+
 export default function MagneticButton({ children, className, ...props }) {
     const magneticRef = useRef(null);
+    const { playHover } = useTechnoSounds();
 
     useEffect(() => {
         const element = magneticRef.current;
@@ -32,14 +35,20 @@ export default function MagneticButton({ children, className, ...props }) {
             });
         };
 
+        const handleMouseEnter = () => {
+            playHover();
+        };
+
         element.addEventListener('mousemove', handleMouseMove);
         element.addEventListener('mouseleave', handleMouseLeave);
+        element.addEventListener('mouseenter', handleMouseEnter);
 
         return () => {
             element.removeEventListener('mousemove', handleMouseMove);
             element.removeEventListener('mouseleave', handleMouseLeave);
+            element.removeEventListener('mouseenter', handleMouseEnter);
         };
-    }, []);
+    }, [playHover]);
 
     return React.cloneElement(children, { ref: magneticRef, className: `${children.props.className || ''} ${className || ''}` });
 }

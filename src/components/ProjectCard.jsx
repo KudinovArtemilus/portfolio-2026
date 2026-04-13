@@ -1,10 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
+import { useTechnoSounds } from '../hooks/useTechnoSounds';
 
 export default function ProjectCard({ project }) {
     const cardRef = useRef(null);
     const contentRef = useRef(null);
+    const { playClick } = useTechnoSounds();
 
     useEffect(() => {
         const card = cardRef.current;
@@ -72,7 +74,7 @@ export default function ProjectCard({ project }) {
                 <h3>{project.title}</h3>
                 <p>{project.description.slice(0, 100)}...</p>
                 <div className="project-actions">
-                    <Link to={`/project/${project.id}`} className="btn btn-secondary">Подробнее</Link>
+                    <Link to={`/project/${project.id}`} className="btn btn-secondary" onClick={() => playClick()}>Подробнее</Link>
                 </div>
             </div>
         </div>

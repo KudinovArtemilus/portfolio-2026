@@ -8,6 +8,8 @@ import { Analytics } from "@vercel/analytics/react";
 // Lazy loaded pages
 const Home = React.lazy(() => import('./pages/Home'));
 const ProjectPage = React.lazy(() => import('./pages/ProjectPage'));
+const BlogList = React.lazy(() => import('./pages/BlogList'));
+const BlogPost = React.lazy(() => import('./pages/BlogPost'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,6 +69,8 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/project/:id" element={<ProjectPage />} />
+                        <Route path="/blog" element={<BlogList />} />
+                        <Route path="/blog/:id" element={<BlogPost />} />
                     </Routes>
                 </Suspense>
             </div>

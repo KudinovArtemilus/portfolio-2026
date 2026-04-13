@@ -9,6 +9,7 @@ import ProjectCard from '../components/ProjectCard';
 import TypewriterText from '../components/TypewriterText';
 import MagneticButton from '../components/MagneticButton';
 import ScrollProgress from '../components/ScrollProgress';
+import ContactForm from '../components/ContactForm';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,7 +118,7 @@ export default function Home() {
             <main>
                 <section id="hero" className="hero">
                     <div className="hero-bg">
-                        <img src="/images/hero_bg.png" alt="Фон" />
+                        <img src="/images/hero_bg.webp" alt="Фон" />
                     </div>
                     <div className="hero-content">
                         <h1 className="reveal-text">ДОБРО <span className="gradient-text">ПОЖАЛОВАТЬ</span></h1>
@@ -297,6 +298,7 @@ export default function Home() {
                                     </a>
                                 </MagneticButton>
                             </div>
+                            <ContactForm />
                         </div>
                     </div>
                 </section>
