@@ -13,12 +13,44 @@ const BlogPost = React.lazy(() => import('./pages/BlogPost'));
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Scroll to top on route change
+// Scroll to top or to hash on route change
 function ScrollToTop() {
-    const { pathname } = useLocation();
+    const { pathname, hash } = useLocation();
+    
     useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [pathname]);
+        if (!hash) {
+            window.scrollTo(0, 0);
+        } else {
+            // Function to handle scrolling to hash
+            const scrollToHash = () => {
+                const id = hash.replace('#', '');
+                const element = document.getElementById(id);
+                if (element) {
+                    // Use Lenis scroll if available, otherwise fall back to native
+                    if (window.lenis) {
+                        window.lenis.scrollTo(element, { offset: -100, duration: 1.5 });
+                    } else {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    return true;
+                }
+                return false;
+            };
+
+            // Try immediately
+            if (!scrollToHash()) {
+                // If not found (e.g. page still loading), poll for a few times
+                let attempts = 0;
+                const interval = setInterval(() => {
+                    attempts++;
+                    if (scrollToHash() || attempts > 20) {
+                        clearInterval(interval);
+                    }
+                }, 100);
+                return () => clearInterval(interval);
+            }
+        }
+    }, [pathname, hash]);
     return null;
 }
 
@@ -46,6 +78,9 @@ function App() {
             infinite: false,
         });
 
+        // Store lenis in window for global access (like in ScrollToTop)
+        window.lenis = lenis;
+
         // Sync ScrollTrigger with Lenis
         lenis.on('scroll', ScrollTrigger.update);
 
@@ -58,6 +93,7 @@ function App() {
         return () => {
             gsap.ticker.remove(lenis.raf);
             lenis.destroy();
+            window.lenis = null;
         };
     }, []);
 

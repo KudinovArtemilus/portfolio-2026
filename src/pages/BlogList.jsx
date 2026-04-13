@@ -29,7 +29,19 @@ export default function BlogList() {
             <TechnoBackground />
             <Navbar />
             
-            <main className="container section-padding">
+            <nav className="navbar project-navbar" style={{ position: 'relative', top: '0', background: 'transparent', border: 'none' }}>
+                <div className="container">
+                    <Link to="/" className="back-link">
+                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Назад на главную
+                    </Link>
+                </div>
+            </nav>
+            
+            <main className="container section-padding" style={{ paddingTop: '2rem' }}>
                 <h1 className="section-title" style={{ marginTop: '4rem' }}>БЛОГ</h1>
                 <div className="blog-grid" style={{
                     display: 'grid',
