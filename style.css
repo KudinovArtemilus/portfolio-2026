@@ -73,7 +73,8 @@ body {
     font-family: var(--font-heading);
     font-weight: 900;
     font-size: 1.5rem;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    word-spacing: 4px;
 }
 
 .nav-links {
@@ -329,8 +330,9 @@ h1 {
     font-weight: 600;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     font-family: var(--font-heading);
-    cursor: pointer;
-    border: none;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    color: #fff;
     white-space: nowrap;
 }
 
@@ -359,8 +361,9 @@ h1 {
 /* Sections */
 .section-title {
     font-family: var(--font-heading);
-    font-size: 0.8rem;
-    letter-spacing: 5px;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    word-spacing: 6px;
     color: var(--text-muted);
     margin-bottom: 4rem;
     text-transform: uppercase;
@@ -413,7 +416,8 @@ h1 {
     color: var(--text-muted);
     font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    word-spacing: 3px;
 }
 
 /* Projects Grid */
@@ -774,7 +778,8 @@ h1 {
     position: relative;
     z-index: 2;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
+    word-spacing: 8px;
 }
 
 .project-content {
