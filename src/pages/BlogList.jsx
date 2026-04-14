@@ -36,9 +36,12 @@ export default function BlogList() {
                     gap: '3rem',
                     marginTop: '2rem'
                 }}>
-                    {blogPosts.map(post => (
-                        <BlogCard key={post.id} post={post} />
-                    ))}
+                    {[...blogPosts]
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .map(post => (
+                            <BlogCard key={post.id} post={post} />
+                        ))
+                    }
                 </div>
             </main>
         </div>
