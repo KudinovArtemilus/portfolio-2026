@@ -1,10 +1,10 @@
 export const blogPosts = [
     {
         id: 'java-automation',
-        title: 'Автоматизация на Java: Мой опыт в промышленности',
-        date: '2026-04-10',
-        excerpt: 'Как Java помогает управлять сложными производственными процессами и интегрироваться с ПЛК.',
-        driveId: '1wNTMgpYXYgl18m_NzbOY3LzzlBWD7dhC' // Замените на реальный ID вашего MD файла на Google Диске
+        title: 'Автоматизация на Java: Мой опыт и честные выводы',
+        date: '2026-04-13',
+        excerpt: 'Практические наблюдения о внедрении Java в промышленность: где технология сильна, а где начинаются проблемы.',
+        driveId: '1Pwnezz09Olh0alGxNWIL24mUwAXgogwY'
     },
     {
         id: 'react-performance',

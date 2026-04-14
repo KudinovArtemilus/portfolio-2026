@@ -41,6 +41,11 @@ export default function Navbar() {
             <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
                 <li>
                     <MagneticButton>
+                        <Link to="/" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Главная</Link>
+                    </MagneticButton>
+                </li>
+                <li>
+                    <MagneticButton>
                         <NavLink id="#about" className="nav-link" onClick={() => setIsMobileMenuOpen(false)}>Обо мне</NavLink>
                     </MagneticButton>
                 </li>

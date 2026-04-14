@@ -23,22 +23,51 @@ export default function BlogPost() {
         );
 
         // Fetch MD from Google Drive
-        // Using a CORS proxy to bypass Drive's restrictions
-        const driveUrl = `https://drive.google.com/uc?export=download&id=${post.driveId}`;
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(driveUrl)}`;
+        // Using a more stable CORS proxy
+        const driveId = post.driveId;
+        const driveUrl = `https://docs.google.com/uc?id=${driveId}&export=download`;
+        
+        // List of proxies to try
+        const proxies = [
+            (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+            (url) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}` // Fallback
+        ];
 
-        fetch(proxyUrl)
-            .then(res => {
-                if (!res.ok) throw new Error('Ошибка загрузки');
-                return res.json();
-            })
-            .then(data => {
-                setContent(data.contents);
-            })
-            .catch(err => {
-                console.error(err);
-                setError('Не удалось загрузить статью. Проверьте права доступа к файлу на Google Диске (должен быть доступ у кого есть ссылка).');
-            });
+        let currentProxyIndex = 0;
+
+        const loadContent = (index) => {
+            if (index >= proxies.length) {
+                setError('Все прокси-серверы временно недоступны. Пожалуйста, попробуйте позже.');
+                return;
+            }
+
+            const fetchUrl = proxies[index](driveUrl);
+            
+            fetch(fetchUrl)
+                .then(res => {
+                    if (!res.ok) throw new Error('Proxy error');
+                    // For allorigins, it's JSON. For corsproxy.io, it's the raw content.
+                    return index === 1 ? res.json() : res.text();
+                })
+                .then(data => {
+                    let rawContent = (index === 1) ? data.contents : data;
+
+                    if (!rawContent) throw new Error('Empty response');
+
+                    // Check if we got HTML instead of Markdown
+                    if (rawContent.toLowerCase().includes('<!doctype html>') || rawContent.toLowerCase().includes('<html')) {
+                        throw new Error('Google Drive вернул страницу-предупреждение вместо файла. Проверьте права доступа.');
+                    }
+
+                    setContent(rawContent);
+                })
+                .catch(err => {
+                    console.warn(`Proxy ${index} failed:`, err);
+                    loadContent(index + 1); // Try next proxy
+                });
+        };
+
+        loadContent(0);
     }, [post]);
 
     if (!post) return <div className="container" style={{ padding: '10rem 2rem' }}>Статья не найдена</div>;
