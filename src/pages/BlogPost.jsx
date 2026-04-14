@@ -22,52 +22,26 @@ export default function BlogPost() {
             { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
         );
 
-        // Fetch MD from Google Drive
-        // Using a more stable CORS proxy
+        // Fetch MD from Google Drive via our own Vercel API Proxy
         const driveId = post.driveId;
-        const driveUrl = `https://docs.google.com/uc?id=${driveId}&export=download`;
-        
-        // List of proxies to try
-        const proxies = [
-            (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-            (url) => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}` // Fallback
-        ];
+        const apiPath = `/api/fetch-drive?id=${driveId}`;
 
-        let currentProxyIndex = 0;
-
-        const loadContent = (index) => {
-            if (index >= proxies.length) {
-                setError('Все прокси-серверы временно недоступны. Пожалуйста, попробуйте позже.');
-                return;
-            }
-
-            const fetchUrl = proxies[index](driveUrl);
-            
-            fetch(fetchUrl)
-                .then(res => {
-                    if (!res.ok) throw new Error('Proxy error');
-                    // For allorigins, it's JSON. For corsproxy.io, it's the raw content.
-                    return index === 1 ? res.json() : res.text();
-                })
-                .then(data => {
-                    let rawContent = (index === 1) ? data.contents : data;
-
-                    if (!rawContent) throw new Error('Empty response');
-
-                    // Check if we got HTML instead of Markdown
-                    if (rawContent.toLowerCase().includes('<!doctype html>') || rawContent.toLowerCase().includes('<html')) {
-                        throw new Error('Google Drive вернул страницу-предупреждение вместо файла. Проверьте права доступа.');
-                    }
-
-                    setContent(rawContent);
-                })
-                .catch(err => {
-                    console.warn(`Proxy ${index} failed:`, err);
-                    loadContent(index + 1); // Try next proxy
-                });
-        };
-
-        loadContent(0);
+        fetch(apiPath)
+            .then(async res => {
+                if (!res.ok) {
+                    const errorData = await res.json();
+                    throw new Error(errorData.error || 'Server error');
+                }
+                return res.text();
+            })
+            .then(data => {
+                if (!data) throw new Error('Статья пуста');
+                setContent(data);
+            })
+            .catch(err => {
+                console.error("Blog fetch error:", err);
+                setError(`Ошибка загрузки: ${err.message}. Убедитесь, что файл на Google Диске доступен всем, у кого есть ссылка.`);
+            });
     }, [post]);
 
     if (!post) return <div className="container" style={{ padding: '10rem 2rem' }}>Статья не найдена</div>;
