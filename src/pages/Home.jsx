@@ -197,6 +197,7 @@ export default function Home() {
                                     <div className="skill-tag">Linux</div>
                                     <div className="skill-tag">Docker</div>
                                     <div className="skill-tag">Git</div>
+                                    <div className="skill-tag">Grafana</div>
                                 </div>
                             </div>
                         </div>
