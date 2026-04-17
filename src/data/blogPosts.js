@@ -1,5 +1,12 @@
 export const blogPosts = [
     {
+        id: 'java-industrial-strategy',
+        title: 'Java для промышленных систем: Стратегия цифровой трансформации',
+        date: '2026-04-17',
+        excerpt: 'Почему выбор Java для производственных систем — это не просто смена языка, а переход к устойчивой Enterprise-архитектуре, готовой к Industry 4.0.',
+        driveId: '15bDwl-YNQehQBPUHMgu8Gh4Wy_fsqWcf'
+    },
+    {
         id: 'spravochnik-oshibok',
         title: 'Справочник ошибок в кармане: как упростить жизнь дежурному инженеру',
         date: '2026-04-16',
