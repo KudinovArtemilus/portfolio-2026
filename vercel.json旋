@@ -1,0 +1,7 @@
+{
+  "outputDirectory": "flutter_portfolio/build/web",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

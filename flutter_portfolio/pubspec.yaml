@@ -64,7 +64,12 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/
+    - assets/hero_bg.webp
+    - assets/project_1.webp
+    - assets/project_2.webp
+    - assets/project_3.webp
+    - assets/project_recorder.webp
+    - assets/resume.pdf
   
   shaders:
     - assets/shaders/industrial_scan.frag

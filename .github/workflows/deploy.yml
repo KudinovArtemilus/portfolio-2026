@@ -39,7 +39,7 @@ jobs:
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-org-id: "team_lThvDLpDFA2AqSjN5SB0Egal"
+          vercel-project-id: "prj_B1vAf7EjUARI5NRkTnmY0kTOTFyV"
           vercel-args: '--prod'
           working-directory: ./flutter_portfolio/build/web

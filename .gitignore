@@ -25,3 +25,5 @@ dist-ssr
 
 # Project downloads (too large for GitHub)
 public/downloads/
+
+.vercel
