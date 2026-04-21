@@ -70,6 +70,7 @@ flutter:
     - assets/images/project_3.png
     - assets/images/project_recorder.png
     - assets/images/avatar.png
+    - assets/images/me.jpg
     - assets/resume.pdf
   
   shaders:

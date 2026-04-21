@@ -82,4 +82,11 @@ class PortfolioData {
       driveId: '19Rjh_n1j73Md-_xTBWSI7M-vCpiQt6aG',
     ),
   ];
+
+  static final Map<String, List<String>> categorizedSkills = {
+    'Языки & Backend': ['Java 21', 'Spring Boot', 'SQL (PostgreSQL)', 'RabbitMQ', 'Hibernate'],
+    'Промышленная автоматизация': ['Siemens S7 PLC', 'SCADA (WinCC)', 'Modbus TCP/RTU', 'OPC UA', 'TIA Portal'],
+    'Frontend & Mobile': ['Flutter', 'Dart', 'React (legacy)', 'HTML/CSS'],
+    'Инструменты & DevOps': ['Docker', 'Git', 'Vercel', 'Postman', 'Figma'],
+  };
 }
