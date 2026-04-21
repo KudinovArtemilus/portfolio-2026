@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class IndustrialTheme {
   static const Color bgDark = Color(0xFF0A0B0E);
@@ -11,32 +12,42 @@ class IndustrialTheme {
   static ThemeData get darkTheme {
     return ThemeData(
       brightness: Brightness.dark,
+      useMaterial3: true,
       scaffoldBackgroundColor: bgDark,
       primaryColor: accent,
       colorScheme: const ColorScheme.dark(
-        secondary: accent,
+        primary: accent,
+        secondary: accentSecondary,
         surface: bgCard,
       ),
-      textTheme: const TextTheme(
+      textTheme: GoogleFonts.outfitTextTheme(const TextTheme(
         headlineLarge: TextStyle(
-          fontFamily: 'Outfit',
           color: textMain,
           fontWeight: FontWeight.w800,
           letterSpacing: -1.0,
         ),
         bodyLarge: TextStyle(
-          fontFamily: 'Inter',
           color: textMain,
         ),
         bodyMedium: TextStyle(
-          fontFamily: 'Inter',
           color: textMuted,
         ),
+      )).copyWith(
+        titleLarge: GoogleFonts.outfit(
+          color: textMain,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 2.0,
+        ),
+        labelLarge: GoogleFonts.jetBrainsMono(
+          color: accent,
+          letterSpacing: 2.0,
+        ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: bgCard.withOpacity(0.8),
+        elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4), // Machined corners
+          borderRadius: BorderRadius.circular(4),
           side: const BorderSide(color: Color(0x1A94A3B8)),
         ),
       ),
