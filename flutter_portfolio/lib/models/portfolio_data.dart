@@ -22,26 +22,26 @@ class PortfolioData {
       id: 'monitoring',
       title: 'Промышленный мониторинг',
       description: '# Промышленный мониторинг\n\nСистема сбора данных в реальном времени с контроллеров Siemens S7.',
-      image: 'assets/images/project_1.webp',
+      image: 'assets/images/project_1.png',
     ),
     Project(
       id: 'recorder',
       title: 'Java Screen Recorder',
       description: '# Java Screen Recorder\n\nВысокопроизводительное приложение для фоновой записи экрана.',
-      image: 'assets/images/project_recorder.webp',
+      image: 'assets/images/project_recorder.png',
       downloadUrl: 'https://drive.google.com/uc?export=download&id=1wNTMgpYXYgl18m_NzbOY3LzzlBWD7dhC',
     ),
     Project(
       id: 'diagnostic',
       title: 'Диагностические утилиты',
-      description: '# Диагностические утилиты\n\nПодробное описание в разработке...',
-      image: 'assets/images/project_2.webp',
+      description: '# Диагностические утилиты\n\nРазработка систем глубокой диагностики промышленного оборудования.',
+      image: 'assets/images/project_2.png',
     ),
     Project(
       id: 'digital-twin',
       title: 'Цифровой отпечаток',
-      description: '# Цифровой отпечаток\n\nПодробное описание в разработке...',
-      image: 'assets/images/project_3.webp',
+      description: '# Цифровой отпечаток\n\nСоздание цифровых двойников для оптимизации производственных процессов.',
+      image: 'assets/images/project_3.png',
     ),
   ];
 

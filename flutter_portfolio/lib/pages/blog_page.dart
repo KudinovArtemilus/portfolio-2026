@@ -77,7 +77,7 @@ class _BlogPageState extends State<BlogPage> {
                   MarkdownBody(
                     data: snapshot.data ?? '',
                     styleSheet: MarkdownStyleSheet(
-                      p: const TextStyle(color: IndustrialTheme.textMain, height: 1.6),
+                      p: const TextStyle(color: IndustrialTheme.textBody, height: 1.6),
                       h1: const TextStyle(color: IndustrialTheme.accent, fontFamily: 'Outfit'),
                       // Add more styling to match the technical look
                     ),
