@@ -1,0 +1,45 @@
+name: Deploy Flutter Web to Vercel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.7'
+          channel: 'stable'
+
+      - name: Install Dependencies
+        run: |
+          cd flutter_portfolio
+          flutter pub get
+
+      - name: Build Web
+        run: |
+          cd flutter_portfolio
+          flutter build web --release
+
+      - name: Prepare for Vercel
+        run: |
+          # Copy API folder into the build output so Vercel sees both
+          cp -r api flutter_portfolio/build/web/api
+          # Copy vercel.json into the build output
+          cp vercel.json flutter_portfolio/build/web/vercel.json
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./flutter_portfolio/build/web
