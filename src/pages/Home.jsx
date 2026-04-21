@@ -121,9 +121,9 @@ export default function Home() {
                         <img src="/images/hero_bg.webp" alt="Фон" />
                     </div>
                     <div className="hero-content">
-                        <h1 className="reveal-text">ДОБРО <span className="gradient-text">ПОЖАЛОВАТЬ</span></h1>
+                        <h1 className="reveal-text">SYSTEM <span className="gradient-text">OPERATIONAL</span></h1>
                         <TypewriterText 
-                            text="Я Кудинов Артем Владимирович — Старший инженер-программист | Эксперт по Java и автоматизации" 
+                            text="Kudinov Artem | Senior Engineer-Developer | Industrial Automation Specialist" 
                             className="reveal-text-sub" 
                         />
                         <div className="cta-container">
@@ -147,12 +147,12 @@ export default function Home() {
                             </div>
                             <div className="stats-grid">
                                 <div className="stat-card reveal-item">
-                                    <span className="stat-number">13+</span>
-                                    <span className="stat-label">Лет опыта</span>
+                                    <span className="stat-number">13+_YRS</span>
+                                    <span className="stat-label">EXP_LEVEL</span>
                                 </div>
                                 <div className="stat-card reveal-item">
-                                    <span className="stat-number">Java</span>
-                                    <span className="stat-label">Основной стек</span>
+                                    <span className="stat-number">JAVA_E</span>
+                                    <span className="stat-label">CORE_STACK</span>
                                 </div>
                             </div>
                         </div>

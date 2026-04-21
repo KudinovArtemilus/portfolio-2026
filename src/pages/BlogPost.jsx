@@ -71,20 +71,40 @@ export default function BlogPost() {
                 </div>
             </header>
 
-            <section className="project-content section-padding">
+            <section className="project-content section-padding" style={{ marginTop: '0' }}>
                 <div className="container">
-                    <div className="md-content">
+                    <div className="md-content" style={{ 
+                        background: 'var(--bg-card)', 
+                        padding: '4rem', 
+                        borderRadius: '4px', 
+                        border: '1px solid var(--panel-border)',
+                        position: 'relative',
+                        boxShadow: '0 30px 60px rgba(0,0,0,0.5)'
+                    }}>
+                        <div style={{ 
+                            position: 'absolute', 
+                            top: '10px', 
+                            right: '20px', 
+                            fontFamily: 'var(--font-mono)', 
+                            fontSize: '0.7rem', 
+                            color: 'var(--accent)',
+                            opacity: 0.5 
+                        }}>
+                            DOC_REF_ID: {id?.toUpperCase()}
+                        </div>
                         {error ? (
-                            <div style={{ color: '#ff5555', padding: '2rem', border: '1px solid currentColor', borderRadius: '10px' }}>
+                            <div style={{ color: '#ff5555', padding: '2rem', border: '1px solid currentColor', borderRadius: '4px' }}>
                                 {error}
                             </div>
                         ) : (
-                            <ReactMarkdown>{content}</ReactMarkdown>
+                            <div className="technical-report">
+                                <ReactMarkdown>{content}</ReactMarkdown>
+                            </div>
                         )}
                     </div>
                     <div style={{ marginTop: '4rem', textAlign: 'center' }}>
                         <Link to="/blog" className="btn btn-secondary">
-                            Назад к списку статей
+                            [ RETURN_TO_DATABASE ]
                         </Link>
                     </div>
                 </div>

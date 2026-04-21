@@ -51,7 +51,7 @@ function LightningCanvas() {
             const segments = Math.floor(dist / 15);
             
             ctx.lineWidth = 1;
-            ctx.strokeStyle = `rgba(180, 210, 255, ${opacity})`;
+            ctx.strokeStyle = `rgba(0, 242, 255, ${opacity})`;
             ctx.beginPath();
             ctx.moveTo(x1, y1);
 
@@ -131,7 +131,7 @@ export default function TechnoBackground() {
             <CodeFragments />
             <LightningCanvas />
             <svg className="circuit-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path className="line-path" d="M0,20 L40,20 L40,40 L60,40 L60,0 M20,0 L20,100 M80,0 L80,30 L100,30 M0,80 L70,80 L70,100 M30,40 L30,60 L50,60 L50,100" stroke="var(--accent)" strokeWidth="0.1" fill="none" opacity="0.3" />
+                <path className="line-path" d="M0,20 L40,20 L40,40 L60,40 L60,0 M20,0 L20,100 M80,0 L80,30 L100,30 M0,80 L70,80 L70,100 M30,40 L30,60 L50,60 L50,100" stroke="var(--accent)" strokeWidth="0.05" fill="none" opacity="0.15" />
             </svg>
         </div>
     );
