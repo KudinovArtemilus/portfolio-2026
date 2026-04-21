@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../components/techno_background.dart';
+import '../components/bento_card.dart';
+import '../components/system_log_panel.dart';
 import '../theme/industrial_theme.dart';
 import '../models/portfolio_data.dart';
 import 'package:go_router/go_router.dart';
@@ -14,22 +16,23 @@ class HomePage extends StatelessWidget {
       body: Stack(
         children: [
           const TechnoBackground(),
-          CustomScrollView(
-            slivers: [
-              const _SliverNavbar(),
-              SliverToBoxAdapter(
-                child: _HeroSection(),
+          Row(
+            children: [
+              Expanded(
+                child: CustomScrollView(
+                  slivers: [
+                    const _SliverNavbar(),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(24),
+                      sliver: SliverToBoxAdapter(
+                        child: _BentoLayout(),
+                      ),
+                    ),
+                    const SliverToBoxAdapter(child: _Footer()),
+                  ],
+                ),
               ),
-              const SliverPadding(
-                padding: EdgeInsets.symmetric(vertical: 40),
-                sliver: _ProjectsSection(),
-              ),
-              const SliverToBoxAdapter(
-                child: _BlogSection(),
-              ),
-              SliverToBoxAdapter(
-                child: _Footer(),
-              ),
+              const SystemLogPanel(), // Modern Sidebar
             ],
           ),
         ],
@@ -45,121 +48,114 @@ class _SliverNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       floating: true,
-      backgroundColor: IndustrialTheme.bgDark.withOpacity(0.8),
-      surfaceTintColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
       title: Text(
-        'KUDINOV.SYS',
+        'KUDINOV.OS',
         style: IndustrialTheme.darkTheme.textTheme.titleLarge,
       ),
       actions: [
-        TextButton(onPressed: () {}, child: const Text('PROJECTS')),
-        TextButton(onPressed: () {}, child: const Text('BLOG')),
+        IconButton(
+          onPressed: () {}, 
+          icon: Icon(Icons.hub_outlined, color: IndustrialTheme.accent.withOpacity(0.5))
+        ),
+        IconButton(
+          onPressed: () {}, 
+          icon: Icon(Icons.settings_outlined, color: IndustrialTheme.accent.withOpacity(0.3))
+        ),
         const SizedBox(width: 20),
       ],
     );
   }
 }
 
-class _HeroSection extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'SYSTEM OPERATIONAL',
-            style: IndustrialTheme.darkTheme.textTheme.headlineLarge?.copyWith(
-              color: IndustrialTheme.accent,
-            ),
-          ).animate().fadeIn(duration: 800.ms).slideY(begin: 0.2),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Text(
-              'Kudinov Artem | Senior Engineer | Industrial Automation',
-              textAlign: TextAlign.center,
-              style: IndustrialTheme.darkTheme.textTheme.bodyLarge,
-            ),
-          ).animate().fadeIn(delay: 400.ms).shimmer(duration: 1200.ms),
-        ],
-      ),
-    );
-  }
-}
-
-class _ProjectsSection extends StatelessWidget {
-  const _ProjectsSection();
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverGrid(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisSpacing: 20,
-        crossAxisSpacing: 20,
-        childAspectRatio: 0.8,
-      ),
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final project = PortfolioData.projects[index];
-          return Card(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Container(
-                    color: Colors.white10,
-                    child: const Center(child: Icon(Icons.code, color: IndustrialTheme.accent)),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(project.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 8),
-                      Text(project.id.toUpperCase(), style: IndustrialTheme.darkTheme.textTheme.labelLarge),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ).animate().scale(delay: (index * 100).ms, curve: Curves.easeOutBack);
-        },
-        childCount: PortfolioData.projects.length,
-      ),
-    );
-  }
-}
-
-class _BlogSection extends StatelessWidget {
-  const _BlogSection();
-
+class _BentoLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: PortfolioData.blogPosts.map((post) {
-        return ListTile(
-          title: Text(post.title),
-          subtitle: Text(post.date),
-          trailing: const Icon(Icons.chevron_right, color: IndustrialTheme.accent),
-          onTap: () => context.go('/blog/${post.id}'),
-        ).animate().fadeIn().slideX(begin: 0.1);
-      }).toList(),
+      children: [
+        // Hero Card (Large)
+        SizedBox(
+          height: 400,
+          child: BentoCard(
+            label: 'system_status: online',
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'SYSTEM OPERATIONAL',
+                  textAlign: TextAlign.center,
+                  style: IndustrialTheme.darkTheme.textTheme.headlineLarge?.copyWith(
+                    color: IndustrialTheme.accent,
+                    fontSize: 48,
+                  ),
+                ).animate().fadeIn().shimmer(duration: 2.seconds),
+                const SizedBox(height: 16),
+                Text(
+                  'ARTEM KUDINOV // SENIOR AUTOMATION ENGINEER',
+                  style: IndustrialTheme.darkTheme.textTheme.labelLarge,
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 24),
+        // Grid for Projects and Stats
+        LayoutBuilder(builder: (context, constraints) {
+          final isMobile = constraints.maxWidth < 800;
+          return GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: isMobile ? 1 : 3,
+            crossAxisSpacing: 24,
+            mainAxisSpacing: 24,
+            childAspectRatio: 1.2,
+            children: [
+              ...PortfolioData.projects.map((p) => BentoCard(
+                title: p.title,
+                label: 'project_ref: ${p.id}',
+                child: Center(
+                  child: Icon(Icons.developer_board, size: 48, color: IndustrialTheme.accent.withOpacity(0.3)),
+                ),
+              )),
+              BentoCard(
+                title: 'EXPERIENCE',
+                label: 'uptime',
+                child: Center(
+                  child: Text('13+ YRS', style: IndustrialTheme.darkTheme.textTheme.headlineLarge),
+                ),
+              ),
+            ],
+          );
+        }),
+        const SizedBox(height: 24),
+        // Blog Section (Wide Card)
+        BentoCard(
+          title: 'LATEST_LOGS',
+          label: 'blog_feed',
+          child: ListView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: PortfolioData.blogPosts.take(3).map((post) => ListTile(
+              title: Text(post.title),
+              subtitle: Text(post.date),
+              trailing: const Icon(Icons.arrow_forward, size: 16, color: IndustrialTheme.accent),
+              onTap: () => context.go('/blog/${post.id}'),
+            )).toList(),
+          ),
+        ),
+      ],
     );
   }
 }
 
 class _Footer extends StatelessWidget {
+  const _Footer();
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 40),
-      child: Center(child: Text('© 2026 KUDINOV ARTEM | ALL RIGHTS RESERVED')),
+      padding: EdgeInsets.all(40),
+      child: Center(child: Text('KERNEL_VERSION: 3.41.7 // 2026')),
     );
   }
 }
