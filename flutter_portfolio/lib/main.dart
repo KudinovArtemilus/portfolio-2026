@@ -36,7 +36,7 @@ class PortfolioApp extends StatelessWidget {
     );
 
     return MaterialApp.router(
-      title: 'Kudinov Portfolio',
+      title: 'Артем Кудинов | Портфолио',
       theme: IndustrialTheme.darkTheme,
       routerConfig: router,
       debugShowCheckedModeBanner: false,

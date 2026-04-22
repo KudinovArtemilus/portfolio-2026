@@ -84,9 +84,19 @@ class PortfolioData {
   ];
 
   static final Map<String, List<String>> categorizedSkills = {
-    'Языки & Backend': ['Java 21', 'Spring Boot', 'SQL (PostgreSQL)', 'RabbitMQ', 'Hibernate'],
-    'Промышленная автоматизация': ['Siemens S7 PLC', 'SCADA (WinCC)', 'Modbus TCP/RTU', 'OPC UA', 'TIA Portal'],
+    'Языки & Backend': ['Java 21', 'Spring Boot', 'SQL (PostgreSQL)', 'RabbitMQ', 'Kafka', 'ActiveMQ', 'Hibernate'],
+    'Промышленная автоматизация': ['Siemens S7 PLC', 'SCADA (WinCC)', 'Sinamics Starter', 'Micromaster', 'APACS 3000', 'Modbus TCP/RTU', 'TIA Portal'],
+    'Индустриальное оборудование (Бренды)': ['Schuler', 'Andritz', 'Starman', 'MSA', 'NSG', 'SEW Eurodrive', 'Danfoss'],
     'Frontend & Mobile': ['Flutter', 'Dart', 'React (legacy)', 'HTML/CSS'],
-    'Инструменты & DevOps': ['Docker', 'Git', 'Vercel', 'Postman', 'Figma'],
+    'Инструменты & DevOps': ['Maven', 'Gradle', 'Docker', 'Git', 'Vercel', 'Postman', '1C:Предприятие 8.3'],
+  };
+
+  static final Map<String, String> contacts = {
+    'email': 'mailto:kudinovArtemilus@gmail.com',
+    'linkedin': 'https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D0%B5%D0%BC-%D0%BA%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%B2-989461208/',
+    'github': 'https://github.com/KudinovArtemilus',
+    'telegram': 'https://t.me/kudinovartem',
+    'vk': 'https://vk.com/a.kudinov2017',
+    'resume': 'assets/resume.pdf',
   };
 }

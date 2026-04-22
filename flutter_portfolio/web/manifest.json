@@ -1,11 +1,11 @@
 {
-    "name": "flutter_portfolio",
-    "short_name": "flutter_portfolio",
+    "name": "Артем Кудинов | Портфолио",
+    "short_name": "Kudinov",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#111827",
+    "theme_color": "#2DD4BF",
+    "description": "Портфолио Senior Automation Engineer Артема Кудинова. Промышленные системы и Backend.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
