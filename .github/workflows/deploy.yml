@@ -12,7 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Prepare Vercel Configuration
+        run: |
+          mkdir -p public/.vercel
+          echo '{"projectId":"prj_z8UxqadECaYPhVV8T0bCkkUnHX0f","orgId":"team_lThvDLpDFA2AqSjN5SB0Egal","projectName":"portfolio-2026"}' > public/.vercel/project.json
+
       - name: Deploy to Vercel
         run: |
           npm install -g vercel@latest
-          vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} --yes --cwd public --project prj_z8UxqadECaYPhVV8T0bCkkUnHX0f
+          vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} --yes --cwd public
