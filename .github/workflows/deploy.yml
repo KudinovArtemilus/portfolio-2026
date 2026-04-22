@@ -36,11 +36,6 @@ jobs:
           cp vercel.json flutter_portfolio/build/web/vercel.json
 
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v42.2.0
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: "team_lThvDLpDFA2AqSjN5SB0Egal"
-          vercel-project-id: "prj_B1vAf7EjUARI5NRkTnmY0kTOTFyV"
-          vercel-args: '--prod'
-          working-directory: ./flutter_portfolio/build/web
-          vercel-version: latest
+        run: |
+          npm install -g vercel@latest
+          vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} --yes --cwd flutter_portfolio/build/web
