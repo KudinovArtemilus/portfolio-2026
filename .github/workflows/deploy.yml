@@ -2,21 +2,17 @@ name: Deploy Pre-built Web to Vercel
 
 on:
   push:
-      branches:
-            - main
+    branches:
+      - main
 
-            jobs:
-              deploy:
-                  runs-on: ubuntu-latest
-                      steps:
-                            - name: Checkout code
-                                    uses: actions/checkout@v4
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-                                          - name: Deploy to Vercel
-                                                  run: |
-                                                            npm install -g vercel@latest
-                                                                      vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} --yes --cwd public
-                                                                              env:
-                                                                                        VERCEL_ORG_ID: team_lThvDLpDFA2AqSjN5SB0Egal
-                                                                                                  VERCEL_PROJECT_ID: prj_z8UxqadECaYPhVV8T0bCkkUnHX0f
-                                                                                                  
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel@latest
+          vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} --yes --cwd public --project prj_z8UxqadECaYPhVV8T0bCkkUnHX0f
